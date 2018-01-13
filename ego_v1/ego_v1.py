@@ -22,15 +22,6 @@ def ego(data):
         if 'what time is it' in data:
             speaker.speak(time.ctime())
 
-        if 'read book' in data:
-            global reading
-            speaker.speak('Reading...')
-            reading = Process(target=reader.read,args=('test.txt',))
-            reading.start()
-
-        if 'stop reading' in data:
-            reading.terminate()
-
         if 'search' in data:
             speaker.speak('What do you want me to search for??')
             query = get_input()
