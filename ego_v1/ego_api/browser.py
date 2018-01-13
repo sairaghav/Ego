@@ -1,4 +1,4 @@
-import subprocess
+import webbrowser
 
 def browse(link):
-    subprocess.Popen(['start', 'chrome.exe', link], shell=True)
+    webbrowser.open_new_tab(link)
