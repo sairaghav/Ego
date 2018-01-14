@@ -1,4 +1,5 @@
 import sys, time, threading
+sys.path.append('../')
 from api import speaker,listener,reader,browser,process_handler,note_taker,window_switcher,key_presser,volume_controller
 import google
 
