@@ -1,1 +1,1 @@
-Ego is a voice-controlled personal assistant for Windows made using Google's Speech Recognition API.
+Ego is a voice-controlled personal assistant for Windows powered by Google's Speech Recognition API.
