@@ -21,11 +21,12 @@ def search(search_term):
     return result
 
 
-def collect_info(search_term):
+def get_summary(search_term):
+
+    response = requests.get('https://www.google.com/search?q='+search_term+'&start=0')
 
     results = []
 
-    response = requests.get('https://www.google.com/search?q='+search_term+'&start=0')
     soup = BS(response.text,'html.parser')
 
     for result in soup.findAll('span',{'class':'st'}):
