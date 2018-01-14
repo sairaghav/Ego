@@ -1,6 +1,5 @@
-import sys,subprocess, time, threading
+import sys, time, threading
 from api import speaker,listener,reader,browser,process_handler,note_taker,window_switcher,key_presser,volume_controller
-from multiprocessing import Process
 import google
 
 def get_input():
