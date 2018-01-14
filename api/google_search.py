@@ -30,7 +30,14 @@ def get_summary(search_term):
     soup = BS(response.text,'html.parser')
 
     for result in soup.findAll('span',{'class':'st'}):
-        results.append(result.text)
+        if not '...' in result.text and not result.text is u'':
+            results.append(result.text)
 
-    return results[1]
+    try:
+        return results[0]
+    except:
+        return None
+
+
+print get_summary('why do we exist?')
     
