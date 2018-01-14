@@ -1,4 +1,4 @@
-import listener,speaker,subprocess,time
+import listener,speaker,os,time
 
 
 def take_notes():
@@ -14,5 +14,5 @@ def take_notes():
         if 'end of note' in text:
             notes = 0
             speaker.speak('Note saved!')
-            subprocess.call(['start', 'notepad.exe',note_file],shell=True)
+            os.startfile(note_file)
             break
