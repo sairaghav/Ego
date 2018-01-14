@@ -1,7 +1,6 @@
 import sys, time, threading
 sys.path.append('../')
-from api import speaker,listener,reader,browser,process_handler,note_taker,window_switcher,key_presser,volume_controller
-import google
+from api import speaker,listener,reader,browser,process_handler,note_taker,window_switcher,key_presser,volume_controller,google_search
 
 def get_input():
     speak_data = listener.listen()
@@ -34,7 +33,7 @@ def ego(data):
             song = get_input() + ' video'
 
             speaker.speak('Playing '+song)
-            threading.Thread(target=browser.browse,args=(google.lucky(song),)).start()
+            threading.Thread(target=browser.browse,args=(google_search.search(song)[0],)).start()
             
         if 'switch window' in data:
             window_switcher.switch_windows(1)
