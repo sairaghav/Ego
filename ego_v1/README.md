@@ -2,8 +2,8 @@ Ego_v1 offers basic capabilities such as:
 
 1. **Switch windows (Equivalent of Win+Tab):**
 	The command 'switch windows' will display all opened windows. The required window can be chosen by the commands:
-		- Windows 10: 'left'/'right'/'up'/'down' to choose the window and 'select' to focus it to the foreground
-		- Windows 7: 'previous'/'next' to choose the window and 'select' to focus it to the foreground
+	- Windows 10: 'left'/'right'/'up'/'down' to choose the window and 'select' to focus it to the foreground
+	- Windows 7: 'previous'/'next' to choose the window and 'select' to focus it to the foreground
 		
 	Saying 'escape' at any point after 'switch windows' will change the focus to the original window in the foreground.
 	
