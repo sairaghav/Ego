@@ -19,3 +19,17 @@ def search(search_term):
                 pass
 
     return result
+
+
+def collect_info(search_term):
+
+    results = []
+
+    response = requests.get('https://www.google.com/search?q='+search_term+'&start=0')
+    soup = BS(response.text,'html.parser')
+
+    for result in soup.findAll('span',{'class':'st'}):
+        results.append(result.text)
+
+    return results[1]
+    
