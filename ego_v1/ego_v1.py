@@ -1,5 +1,5 @@
 import sys,subprocess, time, threading
-from ego_api import speaker,listener,reader,browser,process_handler,note_taker,window_switcher,key_presser,volume_controller
+from api import speaker,listener,reader,browser,process_handler,note_taker,window_switcher,key_presser,volume_controller
 from multiprocessing import Process
 import google
 
