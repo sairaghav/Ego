@@ -37,7 +37,4 @@ def get_summary(search_term):
         return results[0]
     except:
         return None
-
-
-print get_summary('why do we exist?')
     
