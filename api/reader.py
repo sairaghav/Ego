@@ -44,7 +44,7 @@ def read_news():
     
     data = listener.listen()
 
-    if ['news','breaking news','top news'] in data or '' in data:
+    if data in ['news','breaking news','top news', '', 'no']:
         data = 'news'
         
     if data is '':

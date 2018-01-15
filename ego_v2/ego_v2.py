@@ -1,6 +1,6 @@
 import sys, time, threading
 sys.path.append('../')
-from api import speaker,listener,browser,process_handler,note_taker,window_switcher,key_presser,volume_controller,google_search,conversation,reader
+from api import speaker,listener,browser,process_handler,note_taker,window_switcher,key_presser,volume_controller,google_search,conversation,reader,pdf_converter
 
 def get_input():
     speak_data = listener.listen()
@@ -57,7 +57,10 @@ def ego(data):
             reader.read_news()
 
         if 'read book' in data:
-            reader.read_book('test.txt')
+            speaker.speak('Provide the full path of the PDF book to be read')
+            infile = raw_input('Full File Path: ')
+            outfile = pdf_converter.pdf_to_text(infile)
+            reader.read_book(outfile)
 
     if 'go to sleep' in data:
             speaker.speak('Going to sleep..')
