@@ -9,11 +9,14 @@ def converse():
 
         if 'command mode' in data:
             conversation = 0
+            speaker.speak('It was nice talking to you. See you soon!')
         
         else:
             answer = google_search.get_summary(data)
 
-            if answer is None:
+            if answer is None and not data is '':
                 speaker.speak('Sorry.. I don\'t know anything about that. Can we talk something else?')
+            elif answer is None and data is '':
+                pass
             else:
                 speaker.speak(answer)
