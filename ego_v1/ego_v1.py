@@ -1,6 +1,6 @@
 import sys, time, threading
 sys.path.append('../')
-from api import speaker,listener,browser,process_handler,note_taker,window_switcher,key_presser,volume_controller,google_search,conversation
+from api import speaker,listener,browser,process_handler,note_taker,window_switcher,key_presser,volume_controller,google_search,conversation,reader
 
 def get_input():
     speak_data = listener.listen()
@@ -49,10 +49,6 @@ def ego(data):
 
         if 'volume' in data:
             volume_controller.controller(data)
-
-        if 'conversation mode' in data:
-            conversation.converse()
-            
 
     if 'go to sleep' in data:
             speaker.speak('Going to sleep..')
