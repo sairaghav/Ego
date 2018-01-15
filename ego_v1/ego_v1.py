@@ -21,9 +21,6 @@ def ego(data):
         if 'what time is it' in data:
             speaker.speak(time.ctime())
 
-        if 'read news' in data:
-            reader.read_news()
-
         if 'search' in data:
             speaker.speak('What do you want me to search for??')
             query = get_input()
@@ -51,11 +48,7 @@ def ego(data):
             note_taker.take_notes()
 
         if 'volume' in data:
-            volume_controller.controller(data)
-
-        if 'conversation mode' in data:
-            conversation.converse()
-            
+            volume_controller.controller(data)            
 
     if 'go to sleep' in data:
             speaker.speak('Going to sleep..')
