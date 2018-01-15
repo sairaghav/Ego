@@ -1,6 +1,6 @@
 import sys, time, threading
 sys.path.append('../')
-from api import speaker,listener,reader,browser,process_handler,note_taker,window_switcher,key_presser,volume_controller,google_search
+from api import speaker,listener,browser,process_handler,note_taker,window_switcher,key_presser,volume_controller,google_search,conversation
 
 def get_input():
     speak_data = listener.listen()
@@ -50,16 +50,9 @@ def ego(data):
         if 'volume' in data:
             volume_controller.controller(data)
 
-        if 'close process' in data:
-            speaker.speak('Which process do you want me to close??')
-            process_to_close = listener.listen()
-            procid = process_handler.proc_finder(process_to_close+'.exe')
-
-            if not procid is None:
-                process_handler.proc_killer(procid)
-                speaker.speak(process_to_close+' is closed')
-            else:
-                speaker.speak('No process called '+process_to_close+' found')
+        if 'conversation mode' in data:
+            conversation.converse()
+            
 
     if 'go to sleep' in data:
             speaker.speak('Going to sleep..')
