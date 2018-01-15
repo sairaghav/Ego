@@ -1,6 +1,6 @@
 import sys, time, threading
 sys.path.append('../')
-from api import speaker,listener,browser,process_handler,note_taker,window_switcher,key_presser,volume_controller,google_search,conversation,reader
+from api import speaker,listener,browser,process_handler,note_taker,window_switcher,key_presser,volume_controller,google_search
 
 def get_input():
     speak_data = listener.listen()
