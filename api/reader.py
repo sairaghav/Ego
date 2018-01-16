@@ -1,4 +1,4 @@
-import listener,speaker,google_search,threading,sys,time,browser
+import listener,speaker,google_search,threading,time,browser,pdf_converter
 
 
 class RunCheck(threading.Thread):
@@ -8,67 +8,80 @@ class RunCheck(threading.Thread):
     def run(self):
         global reading
         global paused
+        global browse
 
         while reading == 1:
             choice = listener.listen()
             if 'stop' in choice:
-                reading = 0
-            if 'pause' in choice:
                 paused = 1
+                reading = 0
+            if 'pause' in choice or 'wait' in choice:
+                paused = 1
+            if 'resume' in choice or 'continue' in choice:
+                paused = 0
+                browse = 0
+            if 'select' in choice or 'more' in choice:
+                paused = 1
+                browse = 1
 
-def read_book(filename):
+def read_book():
     global reading
     global paused
     reading = 1
     paused = 0
+
+    speaker.speak('Provide the full path of the PDF book to be read')
+    filename = pdf_converter.pdf_to_text(raw_input('Full File Path: '))
 
     position = 0
 
     with open(filename,'r') as fp:
         RunCheck().start()
         while reading == 1:
-            fp.seek(position)
-            speaker.speak(fp.readline())
-            position = fp.tell()
-            
-            while paused == 1:
-                choice = listener.listen()
-                if 'resume' in choice:
-                    paused = 0
-                if 'stop' in choice:
-                    paused = 0
-                    reading = 0
+            if paused == 0:
+                fp.seek(position)
+                speaker.speak(fp.readline())
+                position = fp.tell()
+
+        paused = 1
+        reading = 0
+
+        speaker.speak('Stopping the reader')
 
 def read_news():
+    global reading
+    global paused
+    global browse
+    reading = 1
+    paused = 0
+    browse = 0
+    
     speaker.speak('Is there anything specific that you want to hear about?')
     
     data = listener.listen()
-
-    if data in ['news','breaking news','top news', '', 'no']:
-        data = 'news'
-        
-    if data is '':
-        pass
     
-    else:   
-        for link,headlines in google_search.search_news(data).iteritems():
+    if 'no' in data or '' in data or 'breaking news' in data or 'top news' in data or 'current news' in data:
+        data = 'news'
+    
+    RunCheck().start()
+    
+    for link,headlines in google_search.search_news(data).iteritems():   
+        if paused == 0:
             speaker.speak(headlines)
-
-            choice = listener.listen()
-
-            if 'next' in choice:
-                continue
-            elif 'select' in choice:
+            time.sleep(5)
+            if browse == 1:
+                speaker.speak('Pausing news to open the link')
                 browser.browse(link)
-                paused = 1
-            elif 'stop' in choice:
-                break
-            elif 'pause' in choice:
-                paused = 1
+                browse = 0
+            
+        while reading == 1 and paused == 1:
+            if browse == 1:
+                browser.browse(link)
+                browse = 0
+            else:
+                pass
 
-            while paused == 1:
-                choice2 = listener.listen()
-                if 'resume' in choice2:
-                    paused = 0
-                if 'stop' in choice2:
-                    break
+
+    paused = 1
+    reading = 0
+    speaker.speak('Stopping news playback')
