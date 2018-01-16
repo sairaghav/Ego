@@ -1,6 +1,7 @@
 import pyautogui,listener,platform
 
-def switch_windows(switcher):
+def switch_windows():
+    switcher = 1
     if platform.release() == '10':
         pyautogui.keyDown('win')
         pyautogui.press('tab')

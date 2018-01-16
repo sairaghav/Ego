@@ -36,7 +36,7 @@ def ego(data):
             threading.Thread(target=browser.browse,args=(google_search.search_video(song)[0],)).start()
             
         if 'switch window' in data:
-            window_switcher.switch_windows(1)
+            window_switcher.switch_windows()
 
         if 'press' in data:
             key_presser.press_key(data)
