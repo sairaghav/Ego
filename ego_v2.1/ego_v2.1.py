@@ -34,7 +34,7 @@ def ego(data):
         elif 'press' in data:
             key_presser.press_key(data)
             
-        elif data in ['show desktop','close window','close tab','new tab','restore tab']:
+        elif data in ['show desktop','close window','close tab','new tab','restore tab','next tab','previous tab']:
             key_presser.press_key(data)
 
         elif data in ['take notes']:

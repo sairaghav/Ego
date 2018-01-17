@@ -38,6 +38,16 @@ def press_key(data):
             pyautogui.keyDown('ctrl')
             pyautogui.press('t')
             pyautogui.keyUp('ctrl')
+        if 'next tab' in data:
+            pyautogui.keyDown('ctrl')
+            pyautogui.press('tab')
+            pyautogui.keyUp('ctrl')
+        if 'previous tab' in data:
+            pyautogui.keyDown('ctrl')
+            pyautogui.keyDown('shift')
+            pyautogui.press('tab')
+            pyautogui.keyUp('shift')
+            pyautogui.keyUp('ctrl')
         if 'new window' in data:
             pyautogui.keyDown('ctrl')
             pyautogui.press('n')
