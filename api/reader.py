@@ -9,10 +9,11 @@ class RunCheck(threading.Thread):
         global reading
         global paused
         global browse
+        global end
 
         while reading == 1:
             choice = listener.listen()
-            if 'stop' in choice:
+            if 'stop' in choice or 'exit' in choice:
                 paused = 1
                 reading = 0
             if 'pause' in choice or 'wait' in choice:
@@ -23,6 +24,8 @@ class RunCheck(threading.Thread):
             if 'select' in choice or 'more' in choice:
                 paused = 1
                 browse = 1
+            if 'yes' in choice:
+                end += 1
 
 def read_book():
     global reading
@@ -52,6 +55,7 @@ def read_news():
     global reading
     global paused
     global browse
+    global end
     reading = 1
     paused = 0
     browse = 0
@@ -60,27 +64,34 @@ def read_news():
     
     data = listener.listen()
     
-    if 'no' in data or '' in data or 'breaking news' in data or 'top news' in data or 'current news' in data:
+    if 'nothing' in data or '' in data or 'breaking news' in data or 'top news' in data or 'current news' in data:
         data = 'news'
     
     RunCheck().start()
-    
-    for link,headlines in google_search.search_news(data).iteritems():   
-        if paused == 0:
-            speaker.speak(headlines)
-            time.sleep(5)
-            if browse == 1:
-                speaker.speak('Pausing news to open the link')
-                browser.browse(link)
-                browse = 0
-            
-        while reading == 1 and paused == 1:
-            if browse == 1:
-                browser.browse(link)
-                browse = 0
-            else:
-                pass
 
+    cnt = 0
+    end = 1
+    while end - cnt > 0:
+        for link,headlines in google_search.search(data,'news',start_page=(end-1)*10).iteritems():   
+            if paused == 0:
+                speaker.speak(headlines)
+                time.sleep(5)
+                if browse == 1:
+                    speaker.speak('Pausing news playback to open link')
+                    browser.browse(link)
+                    browse = 0
+                
+            while reading == 1 and paused == 1:
+                if browse == 1:
+                    browser.browse(link)
+                    browse = 0
+                else:
+                    pass
+        
+        cnt += 1
+        if reading == 1:
+            speaker.speak('Say yes if you want to listen to more news')
+            time.sleep(5)
 
     paused = 1
     reading = 0

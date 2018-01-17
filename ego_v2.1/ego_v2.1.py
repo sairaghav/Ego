@@ -26,7 +26,7 @@ def ego(data):
             song = get_input()
 
             speaker.speak('Playing '+song)
-            threading.Thread(target=browser.browse,args=(google_search.search_video(song)[0],)).start()
+            threading.Thread(target=browser.browse,args=(google_search.search(song,'video')[0],)).start()
             
         elif 'switch window' in data:
             window_switcher.switch_windows()
