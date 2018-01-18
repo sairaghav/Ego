@@ -30,5 +30,7 @@ Ego_v1 offers basic capabilities such as:
 	- Close tab: 'close tab' command closes the browser tab in focus.
 	- New tab: 'new tab' command creates a new tab in the browser.
 	- Restore tab: 'restore tab' command re-opens the recently closed tabs.
+	- Next tab: 'next tab' command moves to the next tab.
+	- Previous tab: 'previous tab' command moves to the next tab.
 	
 Say 'exit' anytime to stop Ego.
