@@ -1,4 +1,4 @@
-import listener,speaker,google_search,threading,time,browser,pdf_converter,key_presser,window_switcher,volume_controller
+import listener,speaker,google_search,threading,time,browser,pdf_converter,navigator,volume_controller
 
 class RunCheck(threading.Thread):
     def __init__(self):
@@ -25,13 +25,8 @@ class RunCheck(threading.Thread):
                 browse = 1
             if 'yes' in choice:
                 end += 1
-
-            if 'switch window' in choice:
-                window_switcher.switch_windows()
-            if 'press' in choice:
-                key_presser.press_key(choice)
-            if choice in ['show desktop','close window','close tab','new tab','restore tab','next tab','previous tab']:
-                key_presser.press_key(choice)
+            if choice in ['show desktop','close window','close tab','new tab','restore tab','next tab','previous tab'] or 'switch window' in choice or 'press' in choice:
+                navigator.navigate(choice)
             if 'volume' in choice:
                 volume_controller.controller(choice)
 
