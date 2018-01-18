@@ -10,8 +10,6 @@ In addition to the [features](https://github.com/sairaghav/Ego/blob/master/ego_v
 	The command 'read book' will trigger the PDF reader module which will ask you to type the full path of the PDF to be read.
 	- 'pause'/'wait' will pause playback
 	- 'stop'/'exit' will stop playback
-	
-While in reader mode, other commands do not work. Saying 'exit' will exit the reader mode and allow you to execute other commands.
 
 3. **Conversation mode:**
 	The command 'conversation mode' will trigger the conversation module where you can ask Ego any question you want and it will try to answer. While in conversation mode, other commands do not work. Saying 'command mode' will exit the conversation mode and allow you to execute other commands.

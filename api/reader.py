@@ -1,4 +1,4 @@
-import listener,speaker,google_search,threading,time,browser,pdf_converter
+import listener,speaker,google_search,threading,time,browser,pdf_converter,key_presser,window_switcher,volume_controller
 
 class RunCheck(threading.Thread):
     def __init__(self):
@@ -25,6 +25,15 @@ class RunCheck(threading.Thread):
                 browse = 1
             if 'yes' in choice:
                 end += 1
+
+            if 'switch window' in choice:
+                window_switcher.switch_windows()
+            if 'press' in choice:
+                key_presser.press_key(choice)
+            if choice in ['show desktop','close window','close tab','new tab','restore tab','next tab','previous tab']:
+                key_presser.press_key(choice)
+            if 'volume' in choice:
+                volume_controller.controller(choice)
 
 def read_book():
     global reading
@@ -95,3 +104,5 @@ def read_news():
     paused = 1
     reading = 0
     speaker.speak('Stopping news playback')
+
+read_news()
