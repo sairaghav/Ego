@@ -46,14 +46,14 @@ def ego(data):
         elif data in ['read news']:
             reader.read_news()
 
-        elif 'read book' in data:
+        elif data in ['read book']:
             reader.read_book()
 
-        elif 'go to sleep' in data:
+        elif data in ['go to sleep']:
             speaker.speak('Going to sleep..')
             listening = 0
 
-        elif 'exit' in data:
+        elif data in ['exit']:
             speaker.speak('Exiting... Goodbye!')
             listening = 0
             sys.exit(0)
