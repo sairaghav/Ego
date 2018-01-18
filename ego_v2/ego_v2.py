@@ -33,7 +33,7 @@ def ego(data):
             song = get_input()
 
             speaker.speak('Playing '+song)
-            threading.Thread(target=browser.browse,args=(google_search.search(song,'video',no_of_results=1).values(),)).start()
+            threading.Thread(target=browser.browse,args=(google_search.search(song,'video',no_of_results=1).values()[0],)).start()
             
         if data in ['show desktop','close window','close tab','new tab','restore tab','next tab','previous tab'] or 'switch window' in data or 'press' in data:
             navigator.navigate(data)
