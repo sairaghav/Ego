@@ -75,7 +75,7 @@ def read_news():
     cnt = 0
     end = 1
     while end - cnt > 0:
-        for link,headlines in google_search.search(data,'news',start_page=(end-1)*10).iteritems():   
+        for headlines,link in google_search.search(data,'news',start_page=(end-1)*10).iteritems():   
             if paused == 0:
                 speaker.speak(headlines)
                 time.sleep(5)
