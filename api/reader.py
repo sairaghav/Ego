@@ -1,8 +1,3 @@
-import sys
-sys.path.append('../')
-from ego_v1 import ego_v1
-from ego_v2 import ego_v2
-from ego_v2.1 import ego_v2.1
 import listener,speaker,google_search,threading,time,browser,pdf_converter
 
 class RunCheck(threading.Thread):
