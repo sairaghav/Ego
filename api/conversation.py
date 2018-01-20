@@ -5,7 +5,7 @@ def get_response(data):
 
     if (answer is None or answer == '') and not data is '':
         speaker.speak('Sorry.. I don\'t know anything about that. Can we talk something else?')
-    elif (answer is None or answer == '') and data is '':
+    elif data is '':
         pass
     else:
         speaker.speak(answer)
@@ -18,7 +18,7 @@ def converse(data='$'):
         while conversation == 1:
             data = listener.listen()
 
-            if 'command mode' in data:
+            if 'end conversation mode' in data:
                 conversation = 0
                 speaker.speak('It was nice talking to you. See you soon!')
             
