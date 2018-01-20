@@ -3,10 +3,10 @@ import speaker,listener,google_search
 def get_response(data):
     answer = google_search.get_summary(data)
 
-    if (answer is None or answer == '') and not data is '':
-        speaker.speak('Sorry.. I don\'t know anything about that. Can we talk something else?')
-    elif data is '':
+    if data == '':
         pass
+    elif (answer is None or answer == ''):
+        speaker.speak('Sorry.. I don\'t know anything about that. Can we talk something else?')
     else:
         speaker.speak(answer)
 
