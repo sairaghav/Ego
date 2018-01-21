@@ -72,7 +72,7 @@ def search(search_term,category='',start_page=1,end_page=-1,no_of_results=-1):
                 try:
                     link = urllib.unquote(links['href'].split('url?q=')[1].split('&sa')[0])
                     if 'webcache' not in link and 'http' in link:
-                        if not '...' in key and not key is u'':
+                        if not '...' in key and not key is u'' and not u'\u25ba' in key:
                             result[key] = link
                 except:
                     pass
