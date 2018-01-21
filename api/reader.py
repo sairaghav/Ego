@@ -8,7 +8,6 @@ class RunCheck(threading.Thread):
         global reading
         global paused
         global browse
-        global end
 
         while reading == 1:
             choice = listener.listen()
@@ -23,8 +22,6 @@ class RunCheck(threading.Thread):
             if 'select' in choice or 'more' in choice:
                 paused = 1
                 browse = 1
-            if 'yes' in choice:
-                end += 1
             if choice in ['show desktop','close window','close tab','new tab','restore tab','next tab','previous tab'] or 'switch window' in choice or 'press' in choice:
                 navigator.navigate(choice)
             if 'volume' in choice:
@@ -58,7 +55,6 @@ def read_news():
     global reading
     global paused
     global browse
-    global end
     reading = 1
     paused = 0
     browse = 0
@@ -68,33 +64,25 @@ def read_news():
     data = listener.listen()
     
     if 'nothing' in data:
-        data = 'news'
+        data = ''
     
     RunCheck().start()
 
-    cnt = 0
-    end = 1
-    while end - cnt > 0:
-        for headlines,link in google_search.search(data,'news',start_page=(end-1)*10).iteritems():   
-            if paused == 0:
-                speaker.speak(headlines)
-                time.sleep(5)
-                if browse == 1:
-                    speaker.speak('Pausing news playback to open link')
-                    browser.browse(link)
-                    browse = 0
-                
-            while reading == 1 and paused == 1:
-                if browse == 1:
-                    browser.browse(link)
-                    browse = 0
-                else:
-                    pass
-        
-        cnt += 1
-        if reading == 1:
-            speaker.speak('Say yes if you want to listen to more news')
+    for headlines,link in google_search.search(data).iteritems():   
+        if paused == 0:
+            speaker.speak(headlines)
             time.sleep(5)
+            if browse == 1:
+                speaker.speak('Pausing news playback to open link')
+                browser.browse(link)
+                browse = 0
+            
+        while reading == 1 and paused == 1:
+            if browse == 1:
+                browser.browse(link)
+                browse = 0
+            else:
+                pass
 
     paused = 1
     reading = 0
