@@ -25,7 +25,7 @@ def ego(data):
             speaker.speak('Which song do you want me to play??')
             song = get_input()
 
-            speaker.speak('Playing '+song)
+            speaker.speak('Playing '+google_search.search(song,'video',no_of_results=1).keys()[0])
             threading.Thread(target=browser.browse,args=(google_search.search(song,'video',no_of_results=1).values()[0],)).start()
             
         elif data in ['show desktop','close window','close tab','new tab','restore tab','next tab','previous tab'] or 'switch window' in data or 'press' in data:
