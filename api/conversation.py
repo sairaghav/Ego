@@ -6,7 +6,7 @@ def get_response(data):
     if data == '':
         pass
     elif (answer is None or answer == ''):
-        speaker.speak('Sorry.. I don\'t know anything about that. Can we talk something else?')
+        speaker.speak('Sorry.. I don\'t know about that. Ask me something else')
     else:
         speaker.speak(answer)
 

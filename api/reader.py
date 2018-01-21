@@ -22,7 +22,7 @@ class RunCheck(threading.Thread):
             if 'select' in choice or 'more' in choice:
                 paused = 1
                 browse = 1
-            if choice in ['show desktop','close window','close tab','new tab','restore tab','next tab','previous tab'] or 'switch window' in choice or 'press' in choice:
+            if choice in ['show desktop','close window','close tab','new tab','restore tab','next tab','previous tab'] or 'switch window' in choice or 'press' in choice or 'scroll' in choice:
                 navigator.navigate(choice)
             if 'volume' in choice:
                 volume_controller.controller(choice)

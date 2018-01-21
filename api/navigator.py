@@ -109,3 +109,8 @@ def navigate(data):
             pyautogui.press('t')
             pyautogui.keyUp('shift')
             pyautogui.keyUp('ctrl')
+        if 'scroll' in data:
+            if 'up' in data:
+                pyautogui.press('pgup')
+            if 'down' in data:
+                pyautogui.press('pgdn')
