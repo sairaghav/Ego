@@ -20,7 +20,6 @@ def get_summary(search_term):
     return None
 
 def search_news(search_term=''):
-
     if search_term == '':
         query = 'https://news.google.com/news'
     else:
