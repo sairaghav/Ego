@@ -67,7 +67,7 @@ def read_news():
     
     data = listener.listen()
     
-    if 'nothing' in data or '' in data or 'breaking news' in data or 'top news' in data or 'current news' in data:
+    if 'nothing' in data:
         data = 'news'
     
     RunCheck().start()
