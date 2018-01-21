@@ -68,7 +68,7 @@ def read_news():
     
     RunCheck().start()
 
-    for headlines,link in google_search.search(data).iteritems():   
+    for headlines,link in google_search.search_news(data).iteritems():   
         if paused == 0:
             speaker.speak(headlines)
             time.sleep(5)
