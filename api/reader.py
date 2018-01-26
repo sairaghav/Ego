@@ -111,5 +111,3 @@ def read_news():
     paused = 1
     reading = 0
     speaker.speak('Stopping news playback')
-
-read_book()
