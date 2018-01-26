@@ -1,6 +1,6 @@
 Ego is a voice-controlled personal assistant for Windows powered by Google's Speech Recognition API.
 
-It offers basic capabilities such as:
+It offers capabilities such as:
 1. **Switch windows (Equivalent of Win+Tab):**
 	The command 'switch windows' will display all opened windows. The required window can be chosen by the commands:
 	- Windows 10: 'left'/'right'/'up'/'down' to choose the window and 'select' to focus it to the foreground
@@ -39,8 +39,8 @@ It offers basic capabilities such as:
 	- 'pause'/'wait' will pause news playback
 	- 'stop'/'exit' will stop news playback
 	
-8. **Read PDF:**
-	The command 'read book' will trigger the PDF reader module which will ask you to type the full path of the PDF to be read.
+8. **Read books:**
+	The command 'read book' will trigger the reader module which will ask you for the book that you would like to read. Then it will search for the book and read it for you if found.
 	- 'pause'/'wait' will pause playback
 	- 'stop'/'exit' will stop playback
 
