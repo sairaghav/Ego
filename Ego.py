@@ -59,7 +59,7 @@ def ego(data):
         speaker.speak('Hello! I am Ego.. What can I do for you??')
         listening = 1
 
-    elif 'exit' in data:
+    elif data in ['exit']:
         speaker.speak('Exiting... Goodbye!')
         sys.exit(0)
 
