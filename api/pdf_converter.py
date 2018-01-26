@@ -3,14 +3,15 @@ from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
 from pdfminer.pdfpage import PDFPage
 from cStringIO import StringIO
+from os import getcwd,path,makedirs
 
-def pdf_to_text(path):
+def pdf_to_text(filepath):
     rsrcmgr = PDFResourceManager()
     retstr = StringIO()
-    codec = 'utf-8'
+    codec = 'ascii'
     laparams = LAParams()
     device = TextConverter(rsrcmgr, retstr, codec=codec, laparams=laparams)
-    fp = file(path, 'rb')
+    fp = file(filepath, 'rb')
     interpreter = PDFPageInterpreter(rsrcmgr, device)
     password = ""
     maxpages = 0
@@ -21,9 +22,16 @@ def pdf_to_text(path):
         interpreter.process_page(page)
 
     text = retstr.getvalue()
-    outfile = path.split('\\')[-1].split('.')[0]+'.txt'
+
+    outpath = getcwd()+'\\Books'
+    if path.exists(outpath):
+        pass
+    else:
+        makedirs(outpath)
+    outfile = outpath+'\\'+filepath.split('\\')[-1].split('.')[0]+'.txt'
+
     with file(outfile,'w') as fo:
-        fo.write(text)
+        fo.write('\n'.join(' '.join(text.split('\n')).split('.')).replace('- ',''))
 
     fp.close()
     device.close()
