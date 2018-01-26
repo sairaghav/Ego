@@ -51,7 +51,7 @@ def read_book():
     cnt = 0
     while cnt < 5:
         try:
-            speaker.speak('Getting the book.. This may take some time..')
+            speaker.speak('Searching for the book.. This may take some time..')
             urlretrieve(google_search.search(data+' ebook filetype:pdf').values()[cnt],book_name)
             filename = pdf_converter.pdf_to_text(book_name)
             speaker.speak('Book obtained. Starting the reader..')
