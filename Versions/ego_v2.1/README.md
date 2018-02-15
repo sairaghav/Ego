@@ -1,1 +1,0 @@
-Has the same [features](https://github.com/sairaghav/Ego/blob/master/ego_v2/README.md) as v2 with the only improvement being the integration of conversation mode and command mode. There is no specific trigger ('conversation mode') required to enter conversation mode.
