@@ -1,6 +1,6 @@
-import sys, threading
+import sys,threading,socket,os
 sys.path.append('../')
-from api import speaker,listener,browser,process_handler,note_taker,navigator,volume_controller,google_search,conversation,reader
+from api import speaker,listener,browser,process_handler,note_taker,navigator,volume_controller,google_search,conversation,reader,videocast
 
 def get_input():
     speak_data = listener.listen()
@@ -8,7 +8,6 @@ def get_input():
             speaker.speak('Sorry.. Can you say that again??')
             speak_data = listener.listen()
     return speak_data
-    
 
 def ego(data):
     global listening
@@ -42,6 +41,20 @@ def ego(data):
 
         elif data in ['read book']:
             reader.read_book()
+
+        elif data.startswith('chromecast'):
+            if videocast.get_cc() is None:
+                speaker.speak('No chromecast devices found. Please switch on device and try again')
+            else:
+                speaker.speak('Searching YouTube for video')
+                if 'pause' in data.replace('chromecast','').strip():
+                    videocast.pause_cast_video()
+                elif 'play' in data.replace('chromecast','').strip():
+                    videocast.play_cast_video()
+                else:
+                    if len(data.replace('chromecast','').strip()) > 0:
+                        video_to_search = data.replace('chromecast','').strip()
+                        videocast.cast_video(video_to_search)
 
         elif data in ['go to sleep']:
             speaker.speak('Going to sleep..')
