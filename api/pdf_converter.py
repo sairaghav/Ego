@@ -23,12 +23,12 @@ def pdf_to_text(filepath):
 
     text = retstr.getvalue()
 
-    outpath = getcwd()+'\\Books'
+    outpath = path.join(path.realpath(__file__),'Books')
     if path.exists(outpath):
         pass
     else:
         makedirs(outpath)
-    outfile = outpath+'\\'+filepath.split('\\')[-1].split('.')[0]+'.txt'
+    outfile = path.join(outpath,path.splitext(filepath)[0]+'.txt')
 
     with file(outfile,'w') as fo:
         fo.write('\n'.join(' '.join(text.split('\n')).split('.')).replace('- ',''))
