@@ -1,6 +1,6 @@
 import sys,threading,socket,os
 sys.path.append('../')
-from api import speaker,listener,browser,process_handler,note_taker,navigator,volume_controller,google_search,conversation,reader,videocast
+from api import speaker,listener,browser,process_handler,note_taker,navigator,volume_controller,google_search,conversation,reader,videocast,chess_player
 
 def get_input():
     speak_data = listener.listen()
@@ -29,6 +29,9 @@ def ego(data):
             
         elif data in ['show desktop','close window','close tab','new tab','restore tab','next tab','previous tab'] or 'switch window' in data or 'press' in data or 'scroll' in data:
             navigator.navigate(data)
+
+        elif 'play chess' in data:
+            chess_player.start_play()
 
         elif data in ['take notes']:
             note_taker.take_notes()
