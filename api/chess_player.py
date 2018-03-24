@@ -29,10 +29,7 @@ class Player(object):
                     for pos in self.board.convert_to_position(suggestions):
                         speaker.speak(str(pos))
                 else:
-<<<<<<< 47e0d075b53762af8b801c35951bb04f956ed404
-=======
                     speaker.speak('No moves available for the selected piece')
->>>>>>> Play chess
                     return False
                 
             while len(data) != 2 and not 'exit' in data:
@@ -52,34 +49,12 @@ class Player(object):
             black_player = listener.listen()
 
             while self.end_of_game == 0:
-<<<<<<< 47e0d075b53762af8b801c35951bb04f956ed404
-                
-=======
->>>>>>> Play chess
                 if self.board.current_player == 'w':
                     self.board.display_board(white_player)
                 else:
                     self.board.display_board(black_player)
 
                 get = True
-<<<<<<< 47e0d075b53762af8b801c35951bb04f956ed404
-                while get:
-                    try:
-                        (from_x_pos,from_y_pos,to_x_pos,to_y_pos) = self.get_user_input()
-                        get = False
-                    except KeyboardInterrupt:
-                        self.end_of_game = 1
-                    except:
-                        get = True
-
-                piece_to_move = self.board.get_piece((from_x_pos,from_y_pos))
-                if piece_to_move is not None and self.board.make_move(piece_to_move,to_x_pos,to_y_pos):
-                    if self.board.is_checkmate() or self.board.is_draw:
-                        self.end_of_game = 1
-                else:
-                    speaker.speak('Invalid Move')
-
-=======
                 while get and self.end_of_game == 0:
                     try:
                         (from_x_pos,from_y_pos,to_x_pos,to_y_pos) = self.get_user_input()
@@ -98,7 +73,6 @@ class Player(object):
                     except:
                         get = True
 
->>>>>>> Play chess
             if self.board.is_draw:
                 speaker.speak('Game drawn due to stalemate')
 
@@ -110,15 +84,9 @@ class Player(object):
 
         except KeyboardInterrupt:
             if self.board.opponent_player == 'w':
-<<<<<<< 47e0d075b53762af8b801c35951bb04f956ed404
-                speaker.speak(white_player+' wins!!!')
-            else:
-                speaker.speak(black_player+' wins!!!')
-=======
                 speaker.speak(black_player+' quit, '+white_player+' wins!!!')
             else:
                 speaker.speak(white_player+' quit, '+black_player+' wins!!!')
->>>>>>> Play chess
 
     def start_single_player(self):
         try:
@@ -142,11 +110,7 @@ class Player(object):
                     else:
                         self.board.display_board(black_player)
                     get = True
-<<<<<<< 47e0d075b53762af8b801c35951bb04f956ed404
-                    while get:
-=======
                     while get and self.end_of_game == 0:
->>>>>>> Play chess
                         try:
                             (from_x_pos,from_y_pos,to_x_pos,to_y_pos) = self.get_user_input()
                             get = False
@@ -156,17 +120,6 @@ class Player(object):
                             get = True
 
                     piece_to_move = self.board.get_piece((from_x_pos,from_y_pos))
-<<<<<<< 47e0d075b53762af8b801c35951bb04f956ed404
-                    made_move = self.board.make_move(piece_to_move,to_x_pos,to_y_pos)
-                    if piece_to_move is not None and made_move:
-                        speaker.speak('Moved '+made_move.name+' to '+self.board.convert_to_position([(made_move.x_pos,made_move.y_pos)])[0])
-                    else:
-                        speaker.speak('Invalid Move')
-                except:
-                    moved_piece = self.board.choose_best_move()
-                    if moved_piece is not None:
-                        speaker.speak('Moved '+moved_piece.name+' to '+self.board.convert_to_position([(moved_piece.x_pos,moved_piece.y_pos)])[0])
-=======
                     cut_piece,moved_piece = self.board.make_move(piece_to_move,to_x_pos,to_y_pos)
                     if piece_to_move is not None and moved_piece is not False:
                         speaker.speak('Moved '+moved_piece.name+' to '+self.board.convert_to_position([(moved_piece.x_pos,moved_piece.y_pos)])[0])
@@ -180,7 +133,6 @@ class Player(object):
                         speaker.speak('Moved '+moved_piece.name+' to '+self.board.convert_to_position([(moved_piece.x_pos,moved_piece.y_pos)])[0])
                         if cut_piece != None:
                             speaker.speak(cut_piece.name+' is cut by '+piece_to_move.name)
->>>>>>> Play chess
 
                 if self.board.is_checkmate() or self.board.is_draw:
                     self.end_of_game = 1
