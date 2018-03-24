@@ -22,10 +22,17 @@ class Knight(object):
                     y_pos = y_start+step2
                     try:
                         if self.board.get_piece((x_pos,y_pos)).color == self.color:
+<<<<<<< 47e0d075b53762af8b801c35951bb04f956ed404
                             break
                         else:
                             possible_positions.append((x_pos,y_pos))
                             break
+=======
+                            pass
+                        else:
+                            if x_pos in range(1,9) and y_pos in range(1,9):
+                                possible_positions.append((x_pos,y_pos))
+>>>>>>> Play chess
                     except:
                         if x_pos in range(1,9) and y_pos in range(1,9):
                             possible_positions.append((x_pos,y_pos))
